@@ -49,6 +49,7 @@
   "dependencies": {
     "prop-types": "*",
     "react": "*",
-    "react-dom": "*"
+    "react-dom": "*",
+    "uuid": "^8.2.0"
   }
 }
