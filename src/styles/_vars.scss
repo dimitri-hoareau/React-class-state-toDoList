@@ -1,0 +1,5 @@
+// _vars.scss
+@use 'sass:color';
+
+$color-main: #987654;
+$color-dark: color.scale($color-main, $lightness: -10%);
