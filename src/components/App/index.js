@@ -31,6 +31,7 @@ class App extends Component {
       id: uuidv4(),
       label: newTodoText,
       done: false,
+      favoris: false,
     };
     // Lorsque je modofie le state,
     // je NE DOIS JAMAIS modifier
@@ -79,7 +80,28 @@ class App extends Component {
   deleteTodo = (id) => {
     console.log("Je dois supprimer la todo ", id);
     const newTodos = this.state.todos.filter((todoObject) => {
-      return todoObject.id !== id;
+      // Je veux garder les todos dont l'id n'est pas celui que je dois supprimer
+
+      return todoObject.id === id;
+    });
+
+    // const newTodos = this.state.todos.filter( todo => todo.id !== id );
+
+    this.setState({
+      todos: newTodos,
+    });
+  };
+
+  handleFavClick = (id) => {
+    console.log("Ajouter en favoris: ", id);
+    const newTodos = this.state.todos.map((todoObject) => {
+      if (todoObject.id === id) {
+        return {
+          ...todoObject,
+          favoris: !todoObject.favoris,
+        };
+      }
+      return todoObject;
     });
 
     this.setState({
@@ -102,6 +124,7 @@ class App extends Component {
           list={todos}
           checkTodo={this.handleCheckTodo}
           deleteTodo={this.deleteTodo}
+          handleFavClick={this.handleFavClick}
         />
       </div>
     );
