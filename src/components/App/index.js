@@ -11,7 +11,7 @@ import todosData from "../../data/tasks";
 
 class App extends Component {
   state = {
-    newTodoText: "test",
+    newTodoText: "",
     todos: todosData,
   };
 
@@ -47,6 +47,15 @@ class App extends Component {
     });
   };
 
+  todoCount = () => {
+    const { todos } = this.state;
+    const filtered = todos.filter((todoObjet) => {
+      return todoObjet.done === false;
+    });
+
+    return filtered.length;
+  };
+
   render() {
     // J'extraie les todos du state
     const { todos, newTodoText } = this.state;
@@ -57,7 +66,7 @@ class App extends Component {
           onTodoSubmit={this.addTodo}
           changeText={this.changeTodoText}
         />
-        <Counter number={0} />
+        <Counter number={this.todoCount()} />
         <Tasks list={todos} />
       </div>
     );
