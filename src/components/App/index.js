@@ -76,6 +76,17 @@ class App extends Component {
     });
   };
 
+  deleteTodo = (id) => {
+    console.log("Je dois supprimer la todo ", id);
+    const newTodos = this.state.todos.filter((todoObject) => {
+      return todoObject.id !== id;
+    });
+
+    this.setState({
+      todos: newTodos,
+    });
+  };
+
   render() {
     // J'extraie les todos du state
     const { todos, newTodoText } = this.state;
@@ -87,7 +98,11 @@ class App extends Component {
           changeText={this.changeTodoText}
         />
         <Counter number={this.todoCount()} />
-        <Tasks list={todos} checkTodo={this.handleCheckTodo} />
+        <Tasks
+          list={todos}
+          checkTodo={this.handleCheckTodo}
+          deleteTodo={this.deleteTodo}
+        />
       </div>
     );
   }

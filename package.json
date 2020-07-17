@@ -50,6 +50,7 @@
     "prop-types": "*",
     "react": "*",
     "react-dom": "*",
+    "react-icons": "^3.10.0",
     "uuid": "^8.2.0"
   }
 }

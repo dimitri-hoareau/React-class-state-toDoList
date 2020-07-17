@@ -1,9 +1,9 @@
 import React from "react";
-
+import { FaTrash } from "react-icons/fa";
 import "./style.scss";
 
 const Tasks = (props) => {
-  const { list, checkTodo } = props;
+  const { list, checkTodo, deleteTodo } = props;
   return (
     <ul className="todo-list">
       {list.map((todoObject) => {
@@ -19,6 +19,14 @@ const Tasks = (props) => {
               }}
             />
             <span>{todoObject.label}</span>
+            <span
+              onClick={() => {
+                deleteTodo(todoObject.id);
+              }}
+              className="todo-delete"
+            >
+              <FaTrash />
+            </span>
           </li>
         );
       })}
