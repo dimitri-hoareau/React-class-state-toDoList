@@ -2,21 +2,19 @@ import React from "react";
 
 import "./style.scss";
 
-const Tasks = () => {
+const Tasks = (props) => {
+  const { list } = props;
   return (
     <ul className="todo-list">
-      <li className="task">
-        <input type="checkbox" />
-        <span>Titre de la todo</span>
-      </li>
-      <li className="task task--done">
-        <input type="checkbox" checked />
-        <span>Titre de la duxieme todo</span>
-      </li>
-      <li className="task">
-        <input type="checkbox" />
-        <span>Titre de la troisieme todo</span>
-      </li>
+      {list.map((todoObject) => {
+        const goodClass = todoObject.done ? "task task--done" : "task";
+        return (
+          <li className={goodClass}>
+            <input type="checkbox" checked={todoObject.done} />
+            <span>{todoObject.label}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 };

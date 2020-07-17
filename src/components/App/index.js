@@ -7,12 +7,14 @@ import Counter from "../Counter";
 import Tasks from "../Tasks";
 import "./styles.css";
 
+import todosData from "../../data/tasks";
+
 // == Composant
 const App = () => (
   <div className="app">
     <Form />
-    <Counter />
-    <Tasks />
+    <Counter number={0} />
+    <Tasks list={todosData} />
   </div>
 );
 
