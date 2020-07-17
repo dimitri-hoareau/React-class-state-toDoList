@@ -56,6 +56,26 @@ class App extends Component {
     return filtered.length;
   };
 
+  handleCheckTodo = (id) => {
+    // Mettre dans le state un nouveau tableau de todos
+    // Dans ce tableau, je veux lers mêmes objets todos
+    // quavant, mais l'objet ayant l'id reçu en paramètre
+    // devra voir son .done inversé
+    const newTodos = this.state.todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo, // Je récupère les propriétés intiales
+          done: !todo.done,
+        };
+      }
+      return todo;
+    });
+
+    this.setState({
+      todos: newTodos,
+    });
+  };
+
   render() {
     // J'extraie les todos du state
     const { todos, newTodoText } = this.state;
@@ -67,7 +87,7 @@ class App extends Component {
           changeText={this.changeTodoText}
         />
         <Counter number={this.todoCount()} />
-        <Tasks list={todos} />
+        <Tasks list={todos} checkTodo={this.handleCheckTodo} />
       </div>
     );
   }
