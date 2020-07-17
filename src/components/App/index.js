@@ -109,6 +109,16 @@ class App extends Component {
     });
   };
 
+  sortTodos = () => {
+    const { todos } = this.state;
+
+    const notDoneFav = todos.filter((todo) => !todo.done && todo.favoris);
+    const notDoneNotFav = todos.filter((todo) => !todo.done && !todo.favoris);
+    const DoneFav = todos.filter((todo) => todo.done && todo.favoris);
+    const DoneNotFav = todos.filter((todo) => todo.done && !todo.favoris);
+
+    return [...notDoneFav, ...notDoneNotFav, ...DoneFav, ...DoneNotFav];
+  };
   render() {
     // J'extraie les todos du state
     const { todos, newTodoText } = this.state;
@@ -121,7 +131,7 @@ class App extends Component {
         />
         <Counter number={this.todoCount()} />
         <Tasks
-          list={todos}
+          list={this.sortTodos()}
           checkTodo={this.handleCheckTodo}
           deleteTodo={this.deleteTodo}
           handleFavClick={this.handleFavClick}
